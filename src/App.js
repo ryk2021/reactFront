@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react'
 import loginService from './services/login'
 import LoginForm from './Componets/LoginForm'
 import Notification from './Componets/Notification'
-import { BrowserRouter, Route, Link } from "react-router-dom"
-
+import Library from './Library'
+import { BrowserRouter as Router, Redirect, Route,Switch,useHistory} from "react-router-dom"
 import './App.css';
 
 const App = () => {
-
-  const [notes, setNotes] = useState([])   
-  const [showAll, setShowAll] = useState(true)
+ 
+  let history = useHistory();
   
   const [errorMessage, setErrorMessage] = useState(null)
 
@@ -22,27 +21,35 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-
     try {
       const user = await loginService.login({
         email,
         password
       })
 
-      
+      debugger
       if(user.code === 'OK'){
         window.localStorage.setItem(
           'loggedUser', JSON.stringify({
             user:email
           })
         )
+        
+        history.push("Library");
+        
+        //return <Redirect to="Library"></Redirect>
+      }
+      else{
+        setErrorMessage(`user not found` )
       }        
 
       setUser(user)
       setEmail('')
       setPassword('')
+
+
     } catch(e) {
-      setErrorMessage('Wrong credentials')
+      setErrorMessage(`Wrong credentials ${e}` )
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
@@ -58,6 +65,13 @@ const App = () => {
         <p>
          Login
         </p>
+        <Router>
+          <Switch>          
+          <Route path="/Library" component={Library}>                    
+          </Route>
+          </Switch>            
+        </Router>
+
         <LoginForm
               email={email}
               password={password}

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import i18n from '../i18n/index'
-/*
+
 const baseUrl = i18n.TOGGABLE.BASE_URL +  'books'
 
 let token = null
@@ -36,4 +36,4 @@ const update = (id, newObject) => {
   return request.then(response => response.data)
 }
 
-export default { getAll, create, update, setToken }*/
+export default { getAll, create, update, setToken }
