@@ -2,6 +2,6 @@
 export default {
   TOGGABLE: {
     CANCEL_BUTTON: 'Exit',
-    BASE_URL: 'https://library2021-api.herokuapp.com/'
+    BASE_URL: 'https://library2021-api.herokuapp.com/api/'
   }
 }

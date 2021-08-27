@@ -6,7 +6,7 @@ const baseUrl = i18n.TOGGABLE.BASE_URL +  'login'
 const login = async credentials => {
     
   const { data } = await axios.post(baseUrl, credentials)
-  
+  debugger
   return data
 }
 
