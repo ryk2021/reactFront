@@ -6,9 +6,10 @@ const Notification = ({ message }) => {
   }
 
   return (
-    <div className="error">
-      {message}
-    </div>
+    // <div class="alert alert-primary" role="alert">
+    //   {message}
+    // </div>
+    <span className="badge badge-info">{message}</span>
   )
 }
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import i18n from '../i18n/index'
 
-const baseUrl = i18n.TOGGABLE.BASE_URL +  'books'
+const baseUrl = i18n.TOGGABLE.BASE_URL +  'loans'
 
 let token = null
 
@@ -10,12 +10,18 @@ const setToken = newToken => {
 }
 
 const getAll = () => {
-  const request = axios.get(baseUrl)  
+  const request = axios.get(baseUrl)
   return request.then(response => response.data)
 }
 
 const getById = (id) => {    
   const request = axios.get(`${baseUrl}/${id}`)  
+  return request.then(response => response.data)
+}
+
+const getByIdBook = (id) => {  
+  
+  const request = axios.get(`${baseUrl}/book/${id}`)  
   return request.then(response => response.data)
 }
 
@@ -41,4 +47,4 @@ const update = (id, newObject) => {
   return request.then(response => response.data)
 }
 
-export default { getAll, create, update, setToken,getById }
+export default { getAll, create, update, setToken,getById,getByIdBook }
